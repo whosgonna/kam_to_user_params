@@ -1,0 +1,25 @@
+x-kamailio: &x-kamailio
+  image: whosgonna/kamailio:6.1.2-kitchenSink
+  command: ["-de"]
+  
+
+
+services:
+  proxy1:
+    <<: *x-kamailio
+    volumes:
+      - ./proxy1/etc/kamailio:/etc/kamailio
+
+  proxy2:
+    <<: *x-kamailio
+    volumes:
+      - ./proxy2/etc/kamailio:/etc/kamailio
+
+  uac:
+    image: whosgonna/kamailio:6.1.2-kitchenSink
+    volumes:
+      - ./uac/work:/work
+    working_dir: /work
+    entrypoint: bash
+    tty: true
+    stop_signal: SIGKILL

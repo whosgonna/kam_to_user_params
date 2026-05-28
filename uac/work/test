@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+sipexer -invite -vl 3 -co -com -fuser alice -tuser "bob;phone-context=32" -cb -sd -su udp:proxy1
